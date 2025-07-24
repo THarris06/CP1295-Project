@@ -13,8 +13,12 @@ import { saveNotes, exportNotesAsJson } from './storage.js';
 export function initializeUI(noteManager) {
     const noteBoard = document.getElementById('note-board');
     const exportBtn = document.getElementById('export-btn');
+    /* Added elements */
     const ascendBtn = document.getElementById('ascend-btn');
     const descendBtn = document.getElementById('descend-btn');
+    const fileInput = document.getElementById('fileInput');
+    const uploadBtn = document.getElementById('upload-btn');
+    const imagePreview = document.getElementById('imagePreview');
 
     // Double click on board to create a new note
     noteBoard.addEventListener('dblclick', (event) => {
@@ -93,6 +97,8 @@ export function setupNoteEventListeners(noteElement, note, noteManager) {
     const contentElement = noteElement.querySelector('.note-content');
     const deleteButton = noteElement.querySelector('.delete-btn');
     const quoteButton = noteElement.querySelector('.quote-btn');
+    const uploadButton = noteElement.querySelector('.upload-btn');
+    const fileInput = noteElement.querySelector('input[type="file"]');
     
     // Track whether the note is being dragged
     let isDragging = false;
@@ -123,6 +129,30 @@ export function setupNoteEventListeners(noteElement, note, noteManager) {
             
             // Display error in console
             console.error('Failed to fetch quote:', error);
+        }
+    });
+
+    /* Added upload button handler */
+    uploadButton.addEventListener('click', () => {
+        fileInput.click();
+    });
+
+    fileInput.addEventListener('change', () => {
+        const file = fileInput.files[0];
+        if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.style.maxWidth = '100%';
+                img.style.display = 'block';
+                img.style.marginTop = '10px';
+                contentElement.appendChild(img);
+                note.updateContent(contentElement.innerHTML);
+            };
+            reader.readAsDataURL(file);
+        } else {
+            alert('Please select an image file.');
         }
     });
     

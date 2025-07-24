@@ -101,7 +101,7 @@ export class Note {
         
         if (this.element) {
             const contentElement = this.element.querySelector('.note-content');
-            contentElement.textContent = content;
+            contentElement.innerHTML = content;
         }
     }
 
