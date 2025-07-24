@@ -57,6 +57,39 @@ header {
     transform: translateY(-2px);
 }
 
+/* Added Styleing */
+#ascend-btn {
+    background-color: white;
+    color: var(--primary-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#ascend-btn:hover {
+    background-color: #ecf0f1;
+    transform: translateY(-2px);
+}
+
+#descend-btn {
+    background-color: white;
+    color: var(--primary-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+#descend-btn:hover {
+    background-color: #ecf0f1;
+    transform: translateY(-2px);
+}
+
 .instructions {
     font-size: 0.9rem;
     opacity: 0.9;
