@@ -205,3 +205,8 @@ export class NoteManager {
 export function createNote(options = {}) {
     return new Note(options);
 }
+
+// export function iterateColor() {
+//     const color = this.color;
+//     console.log(color);
+// }
