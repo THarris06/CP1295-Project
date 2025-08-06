@@ -156,6 +156,10 @@ header {
 }
 
 /* Note colors */
+.note-yellow {
+    background-color: var(--note-yellow);
+}
+
 .note-blue {
     background-color: var(--note-blue);
 }

@@ -48,6 +48,22 @@ export class Note {
     }
 
     /**
+     * Added method that iterates the color of the note through the list of colors
+     */
+    iterateColor() {
+        const currentColor = NOTE_COLORS.indexOf(this.color);
+        const nextColor = (currentColor + 1) % NOTE_COLORS.length;
+        const newColor = NOTE_COLORS[nextColor];
+
+        if (this.element) {
+            this.element.classList.remove(this.color);
+            this.element.classList.add(newColor);
+        }
+
+        this.color = newColor;
+    }
+
+    /**
      * Create the DOM element for this note
      * @returns {HTMLElement} The created note element
      */
@@ -205,8 +221,3 @@ export class NoteManager {
 export function createNote(options = {}) {
     return new Note(options);
 }
-
-// export function iterateColor() {
-//     const color = this.color;
-//     console.log(color);
-// }

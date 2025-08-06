@@ -16,7 +16,6 @@ export function initializeUI(noteManager) {
     /* Added elements */
     const ascendBtn = document.getElementById('ascend-btn');
     const descendBtn = document.getElementById('descend-btn');
-    const colorBtn = document.getElementById('color-btn');
 
     // Double click on board to create a new note
     noteBoard.addEventListener('dblclick', (event) => {
@@ -39,10 +38,6 @@ export function initializeUI(noteManager) {
     descendBtn.addEventListener('click', () => {
         descendNotes(noteManager);
     })
-
-    // colorBtn.addEventListener('click', () => {
-    //     iterateColor();
-    // })
 
     // Setup auto-save timer
     setupAutoSave(noteManager);
@@ -101,6 +96,7 @@ export function setupNoteEventListeners(noteElement, note, noteManager) {
     const quoteButton = noteElement.querySelector('.quote-btn');
     const uploadButton = noteElement.querySelector('.upload-btn');
     const fileInput = noteElement.querySelector('input[type="file"]');
+    const colorButton = noteElement.querySelector('.color-btn');
     
     // Track whether the note is being dragged
     let isDragging = false;
@@ -133,6 +129,13 @@ export function setupNoteEventListeners(noteElement, note, noteManager) {
             console.error('Failed to fetch quote:', error);
         }
     });
+
+    // Color change button handler
+    if (colorButton) {
+        colorButton.addEventListener('click', () => {
+            note.iterateColor();
+        });
+    }
 
     /* Added upload button handler */
     uploadButton.addEventListener('click', () => {
