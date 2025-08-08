@@ -32,11 +32,11 @@ export function initializeUI(noteManager) {
 
     /* Added Button click handliers */
     ascendBtn.addEventListener('click', () => {
-        ascendNotes(noteManager);
+        sortNotes(noteManager, true);
     })
 
     descendBtn.addEventListener('click', () => {
-        descendNotes(noteManager);
+        sortNotes(noteManager, false)
     })
 
     // Setup auto-save timer
@@ -244,10 +244,16 @@ export function exportNotes(noteManager) {
 }
 
 /* Added Button Fuctions */
-export function ascendNotes(noteManager) {
+function sortNotes(noteManager, order) {
     const noteBoard = document.getElementById('note-board');
-    const notes = noteManager.getAllNotes(); 
-    notes.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+    const notes = noteManager.getAllNotes();
+    
+    if (order == true) { // ascending order
+        notes.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+    }
+    else if (order == false) { // descending order
+        notes.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+    }
     noteBoard.innerHtml = '';
 
     let y = 10;
@@ -269,30 +275,30 @@ export function ascendNotes(noteManager) {
     })
 }
 
-export function descendNotes(noteManager) {
-    const noteBoard = document.getElementById('note-board');
-    const notes = noteManager.getAllNotes(); 
-    notes.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-    noteBoard.innerHtml = '';
+// function descendNotes(noteManager) {
+//     const noteBoard = document.getElementById('note-board');
+//     const notes = noteManager.getAllNotes(); 
+//     notes.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+//     noteBoard.innerHtml = '';
 
-    let y = 10;
-    let x = 10;
-    const nWdith = 200;
-    const nHeight = 200;
-    const maxWidth = window.innerWidth;
+//     let y = 10;
+//     let x = 10;
+//     const nWdith = 200;
+//     const nHeight = 200;
+//     const maxWidth = window.innerWidth;
 
-    notes.forEach(note => {
-        if (note.element) {
-            if (x + nWdith > maxWidth) {
-                x = 10
-                y += nHeight + 10
-            }
-            note.updatePosition(x, y);
-            noteBoard.appendChild(note.element);
-        }
-        x += nWdith + 10;
-    })
-}
+//     notes.forEach(note => {
+//         if (note.element) {
+//             if (x + nWdith > maxWidth) {
+//                 x = 10
+//                 y += nHeight + 10
+//             }
+//             note.updatePosition(x, y);
+//             noteBoard.appendChild(note.element);
+//         }
+//         x += nWdith + 10;
+//     })
+// }
 
 /**
  * Setup auto-save functionality
