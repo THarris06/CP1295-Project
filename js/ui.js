@@ -104,7 +104,8 @@ export function setupNoteEventListeners(noteElement, note, noteManager) {
     
     // Content change handler
     contentElement.addEventListener('input', () => {
-        note.updateContent(contentElement.textContent);
+        // note.updateContent(contentElement.textContent);
+        note.setContent(contentElement.textContent);
     });
     
     // Delete button handler
@@ -274,31 +275,6 @@ function sortNotes(noteManager, order) {
         x += nWdith + 10;
     })
 }
-
-// function descendNotes(noteManager) {
-//     const noteBoard = document.getElementById('note-board');
-//     const notes = noteManager.getAllNotes(); 
-//     notes.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-//     noteBoard.innerHtml = '';
-
-//     let y = 10;
-//     let x = 10;
-//     const nWdith = 200;
-//     const nHeight = 200;
-//     const maxWidth = window.innerWidth;
-
-//     notes.forEach(note => {
-//         if (note.element) {
-//             if (x + nWdith > maxWidth) {
-//                 x = 10
-//                 y += nHeight + 10
-//             }
-//             note.updatePosition(x, y);
-//             noteBoard.appendChild(note.element);
-//         }
-//         x += nWdith + 10;
-//     })
-// }
 
 /**
  * Setup auto-save functionality

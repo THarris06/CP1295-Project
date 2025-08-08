@@ -121,6 +121,17 @@ export class Note {
         }
     }
 
+    setContent(content) {
+        this.content = content;
+    }
+
+    renderContent() {
+        if (this.element) {
+            const contentElement = this.element.querySelector('.not-content');
+            contentElement.innerHTML = this.content;
+        }
+    }
+
     /**
      * Convert note to plain object for storage
      * @returns {Object} Plain object representation of the note
