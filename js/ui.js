@@ -13,7 +13,7 @@ import { saveNotes, exportNotesAsJson } from './storage.js';
 export function initializeUI(noteManager) {
     const noteBoard = document.getElementById('note-board');
     const exportBtn = document.getElementById('export-btn');
-    /* Added elements */
+    // *Added Button variables
     const ascendBtn = document.getElementById('ascend-btn');
     const descendBtn = document.getElementById('descend-btn');
 
@@ -133,7 +133,7 @@ export function setupNoteEventListeners(noteElement, note, noteManager) {
         }
     });
 
-    // Color change button handler
+    // *Added Color change button handler
     if (colorButton) {
         colorButton.addEventListener('click', () => {
             note.iterateColor();
