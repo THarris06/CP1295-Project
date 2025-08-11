@@ -30,7 +30,7 @@ export function initializeUI(noteManager) {
         exportNotes(noteManager);
     });
 
-    /* Added Button click handliers */
+    // *Added click handlers for ascend and descend
     ascendBtn.addEventListener('click', () => {
         sortNotes(noteManager, true);
     })
@@ -94,6 +94,7 @@ export function setupNoteEventListeners(noteElement, note, noteManager) {
     const contentElement = noteElement.querySelector('.note-content');
     const deleteButton = noteElement.querySelector('.delete-btn');
     const quoteButton = noteElement.querySelector('.quote-btn');
+    // *Added variables for buttons and file input
     const uploadButton = noteElement.querySelector('.upload-btn');
     const fileInput = noteElement.querySelector('input[type="file"]');
     const colorButton = noteElement.querySelector('.color-btn');
@@ -103,6 +104,7 @@ export function setupNoteEventListeners(noteElement, note, noteManager) {
     let dragOffsetX, dragOffsetY;
     
     // Content change handler
+    // *Altered handler to use new setContent
     contentElement.addEventListener('input', () => {
         // note.updateContent(contentElement.textContent);
         note.setContent(contentElement.textContent);
@@ -138,7 +140,7 @@ export function setupNoteEventListeners(noteElement, note, noteManager) {
         });
     }
 
-    /* Added upload button handler */
+    // *Added handler for file input
     uploadButton.addEventListener('click', () => {
         fileInput.click();
     });
@@ -244,7 +246,11 @@ export function exportNotes(noteManager) {
     exportNotesAsJson(notes);
 }
 
-/* Added Button Fuctions */
+/**
+ * Added a function that sorts the notes
+ * @param {noteManager} noteManager - The note manager instance
+ * @param {order} order - Determines ascending (true), or descending (false)
+ */
 function sortNotes(noteManager, order) {
     const noteBoard = document.getElementById('note-board');
     const notes = noteManager.getAllNotes();
@@ -263,6 +269,7 @@ function sortNotes(noteManager, order) {
     const nHeight = 200;
     const maxWidth = window.innerWidth;
 
+    // keep notes within window
     notes.forEach(note => {
         if (note.element) {
             if (x + nWdith > maxWidth) {

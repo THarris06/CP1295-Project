@@ -8,6 +8,7 @@ const NOTE_COLORS = ['note-yellow', 'note-blue', 'note-green', 'note-pink'];
 
 /**
  * Represents a single note on the board
+ * Added timestamp to class and contructor
  */
 export class Note {
     /**
@@ -18,7 +19,7 @@ export class Note {
      * @param {number} options.x - X position on the board
      * @param {number} options.y - Y position on the board
      * @param {string} options.color - CSS class for note color
-     * Added params
+     * 
      * @param {timestamp} options.timestamp - Time of note creation.
      */
     constructor({ id = null, content = '', x = 0, y = 0, color = null, timestamp = null }) {
@@ -82,7 +83,7 @@ export class Note {
         const contentElement = noteElement.querySelector('.note-content');
         contentElement.textContent = this.content;
         
-        // Added timestamp set
+        // *Added timestamp set
         const timestampElement = document.createElement('div');
         timestampElement.className = 'note-timestamp';
         timestampElement.textContent = this.timestamp;
@@ -121,15 +122,12 @@ export class Note {
         }
     }
 
+    /**
+     * Added a method for setting content
+     * @param {content} content - New content
+     */
     setContent(content) {
         this.content = content;
-    }
-
-    renderContent() {
-        if (this.element) {
-            const contentElement = this.element.querySelector('.not-content');
-            contentElement.innerHTML = this.content;
-        }
     }
 
     /**
