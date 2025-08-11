@@ -80,8 +80,9 @@ export class Note {
         noteElement.style.top = `${this.y}px`;
         
         // Set content
+        // *Altered for image laoding
         const contentElement = noteElement.querySelector('.note-content');
-        contentElement.textContent = this.content;
+        contentElement.innerHTML = this.content;
         
         // *Added timestamp set
         const timestampElement = document.createElement('div');
